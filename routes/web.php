@@ -13,4 +13,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//route must be /api without "/" at the end, swagger breaks that way somehow
 Route::view('/api', 'swagger.index');

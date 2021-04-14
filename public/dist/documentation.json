@@ -11,7 +11,7 @@
     "basePath": "/api",
     "tags": [
         {
-            "name": "user",
+            "name": "users",
             "description": "Wykonuj operacje CRUD na użytkownikach"
         }
     ],
@@ -19,11 +19,11 @@
         "/users/": {
             "post": {
                 "tags": [
-                    "user"
+                    "users"
                 ],
                 "summary": "Utwórz użytkownika",
                 "description": "",
-                "operationId": "createUser",
+                "operationId": "create",
                 "consumes": [
                     "multipart/form-data"
                 ],
