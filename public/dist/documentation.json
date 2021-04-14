@@ -1,0 +1,225 @@
+{
+    "swagger": "2.0.0",
+    "info": {
+        "description": "API do wykonywanie operacji CRUD na bazie danych użytkowników z możliwością wyboru typu użytkownika",
+        "version": "1.0.0",
+        "title": "CRUD users API",
+        "contact": {
+            "email": "gerard.bandosz@wp.pl"
+        }
+    },
+    "basePath": "/api",
+    "tags": [
+        {
+            "name": "user",
+            "description": "Wykonuj operacje CRUD na użytkownikach"
+        }
+    ],
+    "paths": {
+        "/users/": {
+            "post": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "Utwórz użytkownika",
+                "description": "",
+                "operationId": "createUser",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "formData",
+                        "description": "Imię użytkownika",
+                        "required": true,
+                        "type": "string",
+                        "minLength": 2,
+                        "example": "John"
+                    },
+                    {
+                        "name": "surname",
+                        "in": "formData",
+                        "description": "Nazwisko użytkownika - Min:2 znaki",
+                        "required": true,
+                        "type": "string",
+                        "minLength": 2,
+                        "example": "Doe"
+                    },
+                    {
+                        "name": "email",
+                        "in": "formData",
+                        "description": "Email użytkownika - Min:2 znaki",
+                        "required": true,
+                        "type": "string",
+                        "format": "email",
+                        "example": "example@mail.com"
+                    },
+                    {
+                        "name": "password",
+                        "in": "formData",
+                        "description": "Hasło użytkownika - Min:8 znaków, 1 duża litera, 1 znak specjalny, 1 liczba",
+                        "required": true,
+                        "format": "password",
+                        "type": "string",
+                        "example": "Password_1"
+                    },
+                    {
+                        "name": "password_confirmation",
+                        "in": "formData",
+                        "description": "Potwierdź hasło użytkownika",
+                        "required": true,
+                        "type": "string",
+                        "format": "password",
+                        "example": "Password_1"
+                    },
+                    {
+                        "name": "user_type",
+                        "in": "formData",
+                        "description": "Wybierz typ lub typy tworzonego użytkownika - Min: 1 typ(ctrl + lewy klik dla wielu typów)",
+                        "required": true,
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "enum": [
+                                "lecturer",
+                                "worker"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "phone_number",
+                        "in": "formData",
+                        "description": "Numer telefonu użytkownika - Min:7, Max:10 znaków - Wymagane dla lecturer",
+                        "type": "string",
+                        "minLength": 7,
+                        "maxLength": 10,
+                        "default": 66677795
+                    },
+                    {
+                        "name": "education",
+                        "in": "formData",
+                        "description": "Edukacja użytkownika - Min: 5 znaków - Wymagane dla lecturer",
+                        "type": "string",
+                        "default": "Doktor nauk rehabilitowanych"
+                    },
+                    {
+                        "name": "postal_state",
+                        "in": "formData",
+                        "description": "Adres pocztowy użytkownika - Województwo - Wymagane dla worker",
+                        "type": "string",
+                        "default": "wielkopolska"
+                    },
+                    {
+                        "name": "postal_city",
+                        "in": "formData",
+                        "description": "Adres pocztowy użytkownika - Miasto - Wymagane dla worker",
+                        "type": "string",
+                        "default": "Poznan"
+                    },
+                    {
+                        "name": "postal_code",
+                        "in": "formData",
+                        "description": "Adres pocztowy użytkownika - Kod pocztowy - Wymagane dla worker",
+                        "type": "string",
+                        "default": "60475"
+                    },
+                    {
+                        "name": "postal_street",
+                        "in": "formData",
+                        "description": "Adres pocztowy użytkownika - Ulica - Wymagane dla worker",
+                        "type": "string",
+                        "default": "Poznanska"
+                    },
+                    {
+                        "name": "postal_number",
+                        "in": "formData",
+                        "description": "Adres pocztowy użytkownika - Nr domu - Wymagane dla worker",
+                        "type": "string",
+                        "default": "54"
+                    },
+                    {
+                        "name": "address_state",
+                        "in": "formData",
+                        "description": "Adres zamieszkania użytkownika - Województwo - Wymagane dla worker",
+                        "type": "string",
+                        "default": "wielkopolska"
+                    },
+                    {
+                        "name": "address_city",
+                        "in": "formData",
+                        "description": "Adres zamieszkania użytkownika - Miasto - Wymagane dla worker",
+                        "type": "string",
+                        "default": "Poznan"
+                    },
+                    {
+                        "name": "address_code",
+                        "in": "formData",
+                        "description": "Adres zamieszkania użytkownika - Kod pocztowy - Wymagane dla worker",
+                        "type": "string",
+                        "default": "60475"
+                    },
+                    {
+                        "name": "address_street",
+                        "in": "formData",
+                        "description": "Adres zamieszkania użytkownika - Ulica - Wymagane dla worker",
+                        "type": "string",
+                        "default": "Poznanska"
+                    },
+                    {
+                        "name": "address_number",
+                        "in": "formData",
+                        "description": "Adres zamieszkania użytkownika - Nr domu - Wymagane dla worker",
+                        "type": "string",
+                        "default": "54"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "description": "success"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "description": "Operation message"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Failed operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "description": "error"
+                                        },
+                                        "errors": {
+                                            "type": "string",
+                                            "description": "Validation errors"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
