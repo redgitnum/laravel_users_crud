@@ -39,18 +39,12 @@ DB_USERNAME=root
 DB_PASSWORD=
 ``` 
 
-### install dependencies & generate appkey
-
-```sh
-composer install
-php artisan key:generate
-```
 ### run migrations
 
 ```sh
 php artisan migrate
 ```
-### optional: seed the database
+### seed the database
 ```sh
 php artisan db:seed
 ```
@@ -77,4 +71,4 @@ Best used with Postman/Insomnia REST clients for fast route testing.
 
 
 ### Logs
-Logs are save in logs table, every change to user(create, update, delete) triggers observer that creates log based on action and saves all changes, old data and new data, that corresponds to models where the changes occured.
+Logs are saved in logs table, every change to user(create, update, delete) triggers observer that creates log based on action and saves all changes, old data and new data, that corresponds to models where the changes occured.
